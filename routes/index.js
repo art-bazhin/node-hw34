@@ -26,7 +26,7 @@ router.post('/', (req, res, next) => {
     `\n Отправлено с: <${req.body.email}>`
   };
 
-  transporter.sendMail(mailOptions,(err, info) => {
+  transporter.sendMail(mailOptions, (err, info) => {
     if (err) {
       return res.redirect('/?msg=При отправке письма произошла ошибка!');
     }

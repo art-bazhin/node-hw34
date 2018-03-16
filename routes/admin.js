@@ -8,7 +8,16 @@ const formidable = require('formidable');
 const db = require('../models/db');
 const skills = db.get('skills').value();
 
-router.get('/', (req, res) => {
+const isAdmin = (req, res, next) => {
+  if (req.session.isAdmin) {
+    return next();
+  }
+  res.redirect('/login');
+};
+
+router.use(isAdmin);
+
+router.get('/', (req, res, next) => {
   res.render('pages/admin',
     {
       ...skills,
@@ -28,7 +37,7 @@ router.post('/skills', (req, res) => {
   res.redirect('/admin?msgskill=Данные обновлены');
 });
 
-router.post('/upload', function (req, res, next) {
+router.post('/upload', (req, res, next) => {
   const uploadDir = '/uploads';
   const uploadPath = path.join('/public', uploadDir);
 

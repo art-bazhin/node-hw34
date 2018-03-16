@@ -1,0 +1,64 @@
+{
+  "admin": {
+    "email": "admin",
+    "password": "password"
+  },
+  "skills": {
+    "age": "10",
+    "concerts": "53",
+    "cities": "24",
+    "years": "18"
+  },
+  "products": [
+    {
+      "src": "./assets/img/products/Work1.jpg",
+      "name": "Круглая хрень",
+      "price": 200
+    },
+    {
+      "src": "./assets/img/products/Work2.jpg",
+      "name": "Вино вдохновение",
+      "price": 600
+    },
+    {
+      "src": "./assets/img/products/Work3.jpg",
+      "name": "Спортивные очки, изящный силуэт",
+      "price": 1000
+    },
+    {
+      "src": "./assets/img/products/Work4.jpg",
+      "name": "Пиво вдохновение",
+      "price": 600
+    },
+    {
+      "src": "./assets/img/products/Work5.jpg",
+      "name": "Вино вдохновение",
+      "price": 600
+    },
+    {
+      "src": "./assets/img/products/Work6.jpg",
+      "name": "Вино вдохновение",
+      "price": 600
+    },
+    {
+      "src": "./assets/img/products/Work7.jpg",
+      "name": "Вино вдохновение",
+      "price": 600
+    },
+    {
+      "src": "./assets/img/products/Work8.jpg",
+      "name": "Вино вдохновение",
+      "price": 600
+    },
+    {
+      "src": "./assets/img/products/Work9.jpg",
+      "name": "Вино вдохновение",
+      "price": 600
+    },
+    {
+      "src": "/uploads/upload_ac08673691b44bfca66318e4871141f7.png",
+      "name": "Reaper",
+      "price": "1234"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "admin": {
-    "email": "admin",
+    "email": "admin@gmail.com",
     "password": "password"
   },
   "skills": {
@@ -54,11 +54,6 @@
       "src": "./assets/img/products/Work9.jpg",
       "name": "Вино вдохновение",
       "price": 600
-    },
-    {
-      "src": "/uploads/upload_ac08673691b44bfca66318e4871141f7.png",
-      "name": "Reaper",
-      "price": "1234"
     }
   ]
 }

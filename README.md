@@ -12,3 +12,5 @@ npm i
 ```
 npm run start
 ```
+
+Для входа в панель администратора email - admin@gmail.com, пароль - password.

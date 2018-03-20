@@ -1,60 +1,39 @@
-const express = require('express');
-const path = require('path');
-// const favicon = require('serve-favicon');
-const logger = require('morgan');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const session = require('express-session');
+const fs = require('fs');
+const Koa = require('koa');
+const app = new Koa();
+const logger = require('koa-morgan');
+const body = require('koa-body');
+const session = require('koa-session');
+const serve = require('koa-static');
+const Pug = require('koa-pug');
 
-const index = require('./routes/index');
-const login = require('./routes/login');
-const admin = require('./routes/admin');
+const pug = new Pug({ // eslint-disable-line no-unused-vars
+  viewPath: './views',
+  basedir: './views',
+  app: app
+});
 
-const app = express();
+const router = require('./routes');
+const uploadDir = './public/uploads';
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
+}
 
-// uncomment after placing your favicon in /public
-// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({
-  secret: 'loftschool',
-  key: 'key',
-  cookie: {
-    path: '/',
-    httpOnly: true,
-    maxAge: null
-  },
-  saveUninitialized: false,
-  resave: false
+app.keys = ['secret'];
+
+app.use(serve('public'));
+app.use(logger('combined'));
+
+app.use(body({
+  multipart: true,
+  formidable: {
+    uploadDir: uploadDir,
+    keepExtensions: true
+  }
 }));
 
-app.use('/', index);
-app.use('/login', login);
-app.use('/admin', admin);
-
-// catch 404 and forward to error handler
-app.use((req, res, next) => {
-  let err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-
-// error handler
-app.use((err, req, res, next) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.send(`<h1>ERROR ${res.statusCode}</h1>`);
-});
+app.use(session(app));
+app.use(router.routes());
 
 module.exports = app;
